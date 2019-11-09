@@ -1,0 +1,61 @@
+{% extends "bootstrap/base.html" %}
+{%- block styles %}
+    <!-- Bootstrap -->
+    <link  href="/static/weather/css/weather-icons.css" rel="stylesheet">
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    <style type="text/css">body{background: lightblue !important}</style>
+{%- endblock styles %}
+{% block body -%}
+<body>
+  {% block navbar %}
+  <div class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">WakeStart</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right form-group">
+            <li style="color: white"><a href="/settings">Settings</a></li>
+            <li><a href="/logout">LogOut</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+{%- endblock navbar %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12"><div class="well" style="background: #222" ><div class="row" style="font">
+      <i class="wi wi-owm-day-{{weather_info.url}}  wi-pull-left wi-border"></i>
+      <font color="white">
+        <div class="col-xs-3" style="font-size: 20px">
+          <p>Temperature: {{weather_info.temperature.temp}}<span>&#8457;</span></p>
+          <p>Max Temperature: {{weather_info.temperature.temp_max}}<span>&#8457;</span></p>
+          <p>Min Temperature: {{weather_info.temperature.temp_min}}<span>&#8457;</span></p>
+          <p>Humidity: {{weather_info.humidity}}%</p>
+          <p>Wind speed: {{weather_info.wind.speed}} m/h</p>
+          <p>Description: {{weather_info.status}}</p>
+        </div>
+        <div class="col-xs-3">
+          <h3>Todays outfit recommendation</h3>
+          <img src="static/images/clothing/{{cloth.top}}" style="max-width: 200px; max-height: 250px">
+          <img src="static/images/clothing/{{cloth.bottom}}" style="max-width: 200px; max-height: 150px">
+        </div>
+        <div class="col-xs-3">
+          <span style="margin-left: 15px;margin-top: 25px; font-size: 25px">Alarm is to</span><br>
+          <span style="margin-left: 15px;margin-top: 25px; font-size: 35px">3:30PM</span>
+        </div>
+      </font>
+    </div></div></div>
+  </div>
+</div>
+
+</body>
+{%- endblock body %}
+
